@@ -38,9 +38,9 @@ with open("equations.txt", "w") as f:
             dx = end[0] - start[0]
             dy = end[1] - start[1]
             
-            if dx == 0:
+            if dx == 0: # a vertical line
                     f.write(f"x = {start[0]} \\left\\{{{img_height - max(start[1], end[1])} <= y <= {img_height - min(start[1], end[1])}\\right\\}}\n")
-            elif dy == 0:
+            elif dy == 0: # a horizontal line
                 f.write(f"y = {img_height - start[1]} \\left\\{{{min(start[0], end[0])} <= x <= {max(start[0], end[0])}\\right\\}}\n")
         
             else: # a curve

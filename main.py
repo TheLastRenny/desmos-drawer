@@ -38,12 +38,11 @@ with open("equations.txt", "w") as f:
             dx = end[0] - start[0]
             dy = end[1] - start[1]
             
-            if dx == 0 or dy == 0: # a straight line (vertical or horizontal)
-                if dx == 0:
-                       f.write(f"x = {start[0]} \\left\\{{{img_height - max(start[1], end[1])} <= y <= {img_height - min(start[1], end[1])}\\right\\}}\n")
-                else:
-                    f.write(f"y = {img_height - start[1]} \\left\\{{{min(start[0], end[0])} <= x <= {max(start[0], end[0])}\\right\\}}\n")
-            
+            if dx == 0: # a vertical line
+                    f.write(f"x = {start[0]} \\left\\{{{img_height - max(start[1], end[1])} <= y <= {img_height - min(start[1], end[1])}\\right\\}}\n")
+            elif dy == 0: # a horizontal line
+                f.write(f"y = {img_height - start[1]} \\left\\{{{min(start[0], end[0])} <= x <= {max(start[0], end[0])}\\right\\}}\n")
+        
             else: # a curve
                 c1 = (2*start[0] + end[0]) / 3, (2*start[1] + end[1]) / 3
                 c2 = (start[0] + 2*end[0]) / 3, (start[1] + 2*end[1]) / 3
